@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View 
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
+from .models import Country
 
 
 
@@ -17,7 +18,7 @@ class CountryList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["countries"] = countries
+        context["countries"] = Country.objects.all()
         return context
 
 class TravelDestinationList(TemplateView):
@@ -43,7 +44,7 @@ travel_destinations = [
     TravelDestination("Sydney", "Famous for its harbourfront Sydney Opera House and vibrant arts scene.", "Australia", "Spring and Autumn", "$$$", "https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1933&q=80"),
 ]
 
-class Country:
+class CountryData:
     def __init__(self, name, image, capital, language, currency, population):
         self.name = name
         self.image = image
