@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
 from .models import Country
-
+from django.views.generic.edit import CreateView
 
 
 class Home(TemplateView):
@@ -19,12 +19,11 @@ class CountryList(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
-        # If a query exists we will filter by name 
         if name != None:
-            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
             context["countries"] = Country.objects.filter(name__icontains=name)
         else:
             context["countries"] = Country.objects.all()
+            context["header"] = "Trending Countries"
         return context
 
 class TravelDestinationList(TemplateView):
@@ -44,6 +43,12 @@ class TravelDestination:
         self.best_time_to_visit = best_time_to_visit
         self.budget_range = budget_range
         self.image = image
+
+class CountryCreate(CreateView):
+    model = Country
+    fields = ['name', 'capital', 'language', 'currency', 'population']
+    template_name = 'country_create.html'
+    success_url = '/countries/'
 
 travel_destinations = [
     TravelDestination("New York City", "The city that never sleeps, a bustling metropolis with iconic landmarks.", "United States", "Spring and Autumn", "$$$", "https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=790&q=80"),

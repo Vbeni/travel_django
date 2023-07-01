@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.Home.as_view(), name="home"),
     path('about/', views.About.as_view(), name="about"),
     path('countries/', views.CountryList.as_view(), name="country_list" ),
-    path('destinations/', views.TravelDestinationList.as_view(), name="travel_destinations_list")
+    path('destinations/', views.TravelDestinationList.as_view(), name="travel_destinations_list"),
+    path('countries/new/', views.CountryCreate.as_view(), name="country-create")
 ]
