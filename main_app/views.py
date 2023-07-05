@@ -87,6 +87,22 @@ class DestinationCreate(View):
         Destination.objects.create(title=title, description=description, best_time_to_visit=best_time_to_visit, budget_range=budget_range, image=image, country=country)
         return redirect('country_detail', pk=pk)
 
+class ItineraryDestinationAssoc(View):
+    def get(self, request, pk, destination_pk):
+        # get the query param from the url
+        assoc = request.GET.get("assoc")
+        if assoc == "remove":
+            # get the Itinerary by the id and
+            # remove from the join table the given destination_id
+            Itinerary.objects.get(pk=pk).destinations.remove(destination_pk)
+        if assoc == "add":
+            # get the Itinerary by the id and
+            # add to the join table the given destination_id
+            Itinerary.objects.get(pk=pk).destinations.add(destination_pk)
+        return redirect('home')
+
+
+
 travel_destinations = [
     TravelDestination("New York City", "The city that never sleeps, a bustling metropolis with iconic landmarks.", "United States", "Spring and Autumn", "$$$", "https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=790&q=80"),
     TravelDestination("Paris", "Known as the city of love, with stunning architecture and world-renowned cuisine.", "France", "Spring", "$$$", "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80"),

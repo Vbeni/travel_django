@@ -1,24 +1,31 @@
 {% extends 'base.html' %} 
 {% block content %}
-<div class="home__intineraries">
-    {% for intinerary in intineraries %}
-
-        <div class="intinerary mb-5">
-            <h3 class="title is-3 has-text-success">{{intinerary.title}}</h3>
+<div class="home__itineraries">
+    {% for itinerary in itineraries %} 
+        <div class="itinerary mb-5">
+            <h3 class="title is-3 has-text-success">{{itinerary.name}}</h3>
             <hr />
 
-            {% for destination in intinerary.destinations.all %}
+            {% for destination in itinerary.destinations.all %}
 
                 <div class="destination">
                     <span>{{forloop.counter}}</span>
                     <span><b>{{destination.title}}</b></span>
                     <span>{{destination.description}}</span>
+                    <span>
+                        <a href="{% url 'itinerary_destination_assoc' itinerary.pk destination.pk %}?assoc=remove"
+                           class="button is-danger is-outlined">
+                            <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </a>
+                    </span>   
                 </div>
 
             {% endfor %}
         </div>
     {% empty %} 
-        <div class="intinerary mb-5">"There are no destinations in this intinerary"</div>
+        <div class="itinerary mb-5">"There are no destinations in this itinerary"</div>
     {% endfor %}
 </div>
 {% endblock %}
