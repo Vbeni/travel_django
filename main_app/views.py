@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View 
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
-from .models import Country, Destination
+from .models import Country, Destination, Itinerary
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -10,7 +10,11 @@ from django.urls import reverse
 
 class Home(TemplateView):
     template_name = "home.html"
-    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["itineraries"] = Itinerary.objects.all()
+        return context
+
 
 class About(TemplateView):
     template_name = "about.html"

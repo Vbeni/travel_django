@@ -1,4 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block content %}
-<h1>Travel Home Page</h1>
+<div class="home__intineraries">
+    {% for intinerary in intineraries %}
+
+        <div class="intinerary mb-5">
+            <h3 class="title is-3 has-text-success">{{intinerary.title}}</h3>
+            <hr />
+
+            {% for destination in intinerary.destinations.all %}
+
+                <div class="destination">
+                    <span>{{forloop.counter}}</span>
+                    <span><b>{{destination.title}}</b></span>
+                    <span>{{destination.description}}</span>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="intinerary mb-5">"There are no destinations in this intinerary"</div>
+    {% endfor %}
+</div>
 {% endblock %}
