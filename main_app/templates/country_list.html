@@ -24,7 +24,7 @@
   
 <div class="gallery">
   {% for country in countries %}
-  <a href="">
+  <a href="{% url 'country_detail' country.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">

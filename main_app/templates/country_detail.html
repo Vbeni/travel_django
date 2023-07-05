@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="detail__img">
+    <img src="{{country.image}}" alt="{{country.name}}" />
+</div>
+<div class="detail__name">
+    <h1 class="title">{{country.name}}</h1>
+</div>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+    <div class="detail__info">
+        <h4 class="title is-4">Country Information</h4>
+        <p>Capital: {{country.capital}}</p>
+        <p>Language: {{country.language}}</p>
+        <p>Currency: {{country.currency}}</p>
+        <p>Population: {{country.population}}</p>
+    </div>
+</div>
+
+{% endblock %}

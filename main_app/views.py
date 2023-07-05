@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Country
 from django.views.generic.edit import CreateView
-
+from django.views.generic import DetailView
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -44,6 +44,10 @@ class TravelDestination:
         self.budget_range = budget_range
         self.image = image
 
+class CountryDetail(DetailView):
+    model = Country
+    template_name = "country_detail.html"
+    
 class CountryCreate(CreateView):
     model = Country
     fields = ['name', 'capital', 'language', 'currency', 'population']
