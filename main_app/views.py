@@ -54,6 +54,12 @@ class CountryDetail(DetailView):
     model = Country
     template_name = "country_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["itineraries"] = Itinerary.objects.all()
+        return context
+
+
 class CountryCreate(CreateView):
     model = Country
     fields = ['name', 'capital', 'language', 'currency', 'population', 'image']
@@ -89,15 +95,10 @@ class DestinationCreate(View):
 
 class ItineraryDestinationAssoc(View):
     def get(self, request, pk, destination_pk):
-        # get the query param from the url
         assoc = request.GET.get("assoc")
         if assoc == "remove":
-            # get the Itinerary by the id and
-            # remove from the join table the given destination_id
             Itinerary.objects.get(pk=pk).destinations.remove(destination_pk)
         if assoc == "add":
-            # get the Itinerary by the id and
-            # add to the join table the given destination_id
             Itinerary.objects.get(pk=pk).destinations.add(destination_pk)
         return redirect('home')
 

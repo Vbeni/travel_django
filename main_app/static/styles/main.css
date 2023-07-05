@@ -76,24 +76,68 @@ body {
   .detail__container {
     margin-top: 500px;
   }
-
+  
   .detail__destinations {
     width: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.destination {
+  }
+  
+  .destination {
     width: 100%;
     padding: 10px;
     display: grid;
-    grid-template-columns: 0.1fr 3fr 1fr;
-    border-radius: 5px;
     grid-template-columns: 0.1fr 3fr 0.5fr 0.3fr;
     border-radius: 5px;
-}
-
-.destination:hover {
+  }
+  
+  .destination:hover {
     background-color: hsla(0, 0%, 100%, 0.1);
     cursor: pointer;
-}
+  }
+  
+  .destination-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .add-to-itinerary {
+    padding: 6px 10px;
+    background-color: #3273dc;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-itinerary:hover {
+    background-color: #2769c4;
+  }
+  
+  .itinerary-dropdown {
+    position: absolute;
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    z-index: 10;
+    padding: 4px;
+  }
+  
+  .destination:hover .itinerary-dropdown {
+    display: block;
+  }
+  
+  .itinerary-dropdown a {
+    display: block;
+    padding: 4px;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .itinerary-dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+  

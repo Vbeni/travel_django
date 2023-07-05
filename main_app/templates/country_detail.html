@@ -9,17 +9,8 @@
 </div>
 <div class="detail__container">
     <div class="buttons">
-        <a href="{% url 'country_update' country.pk %}" class="button is-info"> Updates
-            <a href="{% url 'country_delete' country.pk %}" class="button is-danger">Delete
-            <span class="icon">
-                <i class="fas fa-edit"></i>
-            </span>
-        </a>
-        <a href="" class="button is-danger">
-            <span class="icon">
-                <i class="fas fa-trash-alt"></i>
-            </span>
-        </a>
+        <a href="{% url 'country_update' country.pk %}" class="button is-info">Updates</a>
+        <a href="{% url 'country_delete' country.pk %}" class="button is-danger">Delete</a>
     </div>
     <div class="detail__info">
         <h4 class="title is-4">Country Information</h4>
@@ -33,47 +24,19 @@
         {% csrf_token %}
         <div class="field has-addons">
             <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    required
-                />
+                <input class="input" type="text" name="title" placeholder="Title" required />
             </div>
             <div class="control">
-                <textarea
-                    class="input"
-                    name="description"
-                    placeholder="Description"
-                    required
-                ></textarea>
+                <textarea class="input" name="description" placeholder="Description" required></textarea>
             </div>
             <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    name="best_time_to_visit"
-                    placeholder="Best Time to Visit"
-                    required
-                />
+                <input class="input" type="text" name="best_time_to_visit" placeholder="Best Time to Visit" required />
             </div>
             <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    name="budget_range"
-                    placeholder="Budget Range"
-                    required
-                />
+                <input class="input" type="text" name="budget_range" placeholder="Budget Range" required />
             </div>
             <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    name="image"
-                    placeholder="Image URL"
-                />
+                <input class="input" type="text" name="image" placeholder="Image URL" />
             </div>
             <div class="control">
                 <input class="button is-primary" type="submit" value="Add Destination" />
@@ -89,6 +52,15 @@
             <span>{{ forloop.counter }}</span>
             <span><b>{{ destination.title }}</b></span>
             <span>{{ destination.description }}</span>
+
+            <div class="destination-actions">
+                <button class="add-to-itinerary" data-destination="{{ destination.pk }}">Add to Itinerary</button>
+                <div class="itinerary-dropdown" id="itinerary-dropdown-{{ destination.pk }}">
+                    {% for itinerary in itineraries %}
+                    <a href="{% url 'itinerary_destination_assoc' itinerary.pk destination.pk %}?assoc=add" class="dropdown-item">{{ itinerary.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         {% empty %}
         <article class="message">
@@ -96,10 +68,8 @@
                 <p>No Destinations Available</p>
             </div>
         </article>
-
         {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}
