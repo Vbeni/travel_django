@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
 from .models import Country
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
 
@@ -66,6 +66,10 @@ class CountryUpdate(UpdateView):
     def get_success_url(self):
         return reverse('country_detail', kwargs={'pk': self.object.pk})
 
+class CountryDelete(DeleteView):
+    model = Country
+    template_name = "country_delete_confirmation.html"
+    success_url = "/countries/"
 
 travel_destinations = [
     TravelDestination("New York City", "The city that never sleeps, a bustling metropolis with iconic landmarks.", "United States", "Spring and Autumn", "$$$", "https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=790&q=80"),

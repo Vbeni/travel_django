@@ -12,4 +12,6 @@ urlpatterns = [
     path('countries/new/', views.CountryCreate.as_view(), name="country_create"),
     path('countries/<int:pk>/', views.CountryDetail.as_view(), name="country_detail"),
     path('country/<int:pk>/update',views.CountryUpdate.as_view(), name="country_update"),
+    path('artists/<int:pk>/delete',views.CountryDelete.as_view(), name="country_delete"),
+
 ]
