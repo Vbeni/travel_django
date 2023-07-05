@@ -6,6 +6,11 @@ from .models import Country, Destination, Itinerary
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 
 class Home(TemplateView):
@@ -19,6 +24,7 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
+@method_decorator(login_required, name='dispatch')
 class CountryList(TemplateView):
     template_name = "country_list.html"
 
@@ -26,9 +32,10 @@ class CountryList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["countries"] = Country.objects.filter(name__icontains=name)
+            context["countries"] = Country.objects.filter(name__icontains=name, user=self.request.user)
+            context["header"] = f"Searching for {name}"
         else:
-            context["countries"] = Country.objects.all()
+            context["countries"] = Country.objects.filter(user=self.request.user)
             context["header"] = "Trending Countries"
         return context
 
@@ -65,7 +72,12 @@ class CountryCreate(CreateView):
     fields = ['name', 'capital', 'language', 'currency', 'population', 'image']
     template_name = 'country_create.html'
     
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CountryCreate, self).form_valid(form)
+
     def get_success_url(self):
+        print(self.kwargs)
         return reverse('country_detail', kwargs={'pk': self.object.pk})
 
 class CountryUpdate(UpdateView):
@@ -102,6 +114,22 @@ class ItineraryDestinationAssoc(View):
             Itinerary.objects.get(pk=pk).destinations.add(destination_pk)
         return redirect('home')
 
+class Signup(View):
+    # show a form to fill out
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    # on form submit, validate the form and login the user.
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("country_list")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
 
 
 travel_destinations = [
