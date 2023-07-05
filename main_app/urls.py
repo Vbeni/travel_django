@@ -10,5 +10,6 @@ urlpatterns = [
     path('countries/', views.CountryList.as_view(), name="country_list" ),
     path('destinations/', views.TravelDestinationList.as_view(), name="travel_destinations_list"),
     path('countries/new/', views.CountryCreate.as_view(), name="country_create"),
-    path('countries/<int:pk>/', views.CountryDetail.as_view(), name="country_detail")
+    path('countries/<int:pk>/', views.CountryDetail.as_view(), name="country_detail"),
+    path('country/<int:pk>/update',views.CountryUpdate.as_view(), name="country_update"),
 ]
