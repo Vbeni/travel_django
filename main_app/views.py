@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.generic import CreateView
 
 
 
@@ -76,8 +77,8 @@ class CountryCreate(CreateView):
         form.instance.user = self.request.user
         return super(CountryCreate, self).form_valid(form)
 
-    def get_success_url(self):
-        print(self.kwargs)
+    def get_success_url(self) -> str:
+        self.object = self.object  
         return reverse('country_detail', kwargs={'pk': self.object.pk})
 
 class CountryUpdate(UpdateView):
@@ -86,6 +87,7 @@ class CountryUpdate(UpdateView):
     template_name = "country_update.html"
     
     def get_success_url(self):
+        self.object = self.object 
         return reverse('country_detail', kwargs={'pk': self.object.pk})
 
 class CountryDelete(DeleteView):

@@ -141,3 +141,87 @@ body {
     background-color: #f0f0f0;
   }
   
+/* Home page styles */
+
+.home__itineraries {
+    margin-top: 40px;
+  }
+  
+  .home__itineraries .itinerary {
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  
+  .home__itineraries .itinerary h3 {
+    margin-bottom: 10px;
+    color: #3db24b;
+    font-size: 24px;
+  }
+  
+  .home__itineraries .hr {
+    border: none;
+    height: 1px;
+    background-color: #cccccc;
+    margin-bottom: 15px;
+  }
+  
+  .home__itineraries .destination-list {
+    margin-top: 20px;
+  }
+  
+  .home__itineraries .destination {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home__itineraries .destination-index {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3db24b;
+    color: #ffffff;
+    border-radius: 50%;
+  }
+  
+  .home__itineraries .destination-info {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .home__itineraries .destination-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #333333;
+  }
+  
+  .home__itineraries .destination-description {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #777777;
+  }
+  
+  .home__itineraries .destination-actions {
+    margin-left: auto;
+  }
+  
+  .home__itineraries .no-destinations,
+  .home__itineraries .no-itineraries {
+    margin-top: 20px;
+    text-align: center;
+    color: #888888;
+    font-size: 16px;
+  }
+  
+
+  

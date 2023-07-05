@@ -25,11 +25,14 @@
             <div class="navbar-menu navbar-start">
                 <a class="navbar-item" href="/about">About</a>
                 <a class="navbar-item" href="/destinations">Destinations</a>
+                {% if user.is_authenticated %}
+                <a class="navbar-item" href="/countries">Countries</a>
+                {% endif %}
             </div>
             {% if user.is_authenticated %}
             <div class="navbar-menu navbar-end">
                 <span class="navbar-item">Welcome: {{ user.username }}</span>
-                <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
+                <a class="navbar-item" href="{% url 'logout' %}?next=/">Logout</a>
             </div>
         {% else %}
             <div class="navbar-menu navbar-end">
