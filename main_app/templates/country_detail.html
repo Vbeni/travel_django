@@ -29,6 +29,58 @@
         <p>Population: {{country.population}}</p>
     </div>
 
+    <form class="mb-5" action="{% url 'destination_create' country.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    required
+                />
+            </div>
+            <div class="control">
+                <textarea
+                    class="input"
+                    name="description"
+                    placeholder="Description"
+                    required
+                ></textarea>
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="best_time_to_visit"
+                    placeholder="Best Time to Visit"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="budget_range"
+                    placeholder="Budget Range"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="image"
+                    placeholder="Image URL"
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add Destination" />
+            </div>
+        </div>
+    </form>
+
     <div class="detail__destinations mb-5">
         <h3 class="title is-3">Destinations</h3>
 
@@ -36,7 +88,7 @@
         <div class="destination">
             <span>{{ forloop.counter }}</span>
             <span><b>{{ destination.title }}</b></span>
-            <span>{{ destination.length }}</span>
+            <span>{{ destination.description }}</span>
         </div>
         {% empty %}
         <article class="message">
@@ -47,7 +99,7 @@
 
         {% endfor %}
     </div>
-    
+
 </div>
 
 {% endblock %}
