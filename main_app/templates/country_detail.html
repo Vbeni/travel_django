@@ -28,6 +28,26 @@
         <p>Currency: {{country.currency}}</p>
         <p>Population: {{country.population}}</p>
     </div>
+
+    <div class="detail__destinations mb-5">
+        <h3 class="title is-3">Destinations</h3>
+
+        {% for destination in country.destinations.all %}
+        <div class="destination">
+            <span>{{ forloop.counter }}</span>
+            <span><b>{{ destination.title }}</b></span>
+            <span>{{ destination.length }}</span>
+        </div>
+        {% empty %}
+        <article class="message">
+            <div class="message-header">
+                <p>No Destinations Available</p>
+            </div>
+        </article>
+
+        {% endfor %}
+    </div>
+    
 </div>
 
 {% endblock %}
