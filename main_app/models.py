@@ -26,3 +26,11 @@ class Destination(models.Model):
     
     def __str__(self):
         return self.title
+
+class Itinerary(models.Model):
+    name = models.CharField(max_length=255)
+    countries = models.ManyToManyField(Country, related_name="itineraries")
+    destinations = models.ManyToManyField(Destination, related_name="itineraries")
+
+    def __str__(self):
+        return self.name
