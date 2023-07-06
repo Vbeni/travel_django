@@ -36,7 +36,7 @@ class CountryList(TemplateView):
             context["countries"] = Country.objects.filter(name__icontains=name, user=self.request.user)
             context["header"] = f"Searching for {name}"
         else:
-            context["countries"] = Country.objects.filter(user=self.request.user)
+            context["countries"] = Country.objects.all()
             context["header"] = "Trending Countries"
         return context
 
