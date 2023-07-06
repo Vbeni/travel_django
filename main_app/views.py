@@ -46,7 +46,7 @@ class TravelDestinationList(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        context["travel_destinations"] = travel_destinations
+        context["travel_destinations"] = Destination.objects.all()
         return context
 
 class TravelDestination:
@@ -65,6 +65,7 @@ class CountryDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["itineraries"] = Itinerary.objects.all()
+        
         return context
 
 

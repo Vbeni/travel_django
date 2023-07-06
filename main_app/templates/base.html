@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
         <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="{% static 'scripts/main.js' %}" defer></script>
         <title>Travel - {% block title %}{% endblock %}</title> 
@@ -44,5 +45,46 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Travel</strong> Travel by Your BV. The source code is licensed under <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+            </p>
+            <p>
+                © 2023 Your Name. All Rights Reserved.
+            </p>
+            <div>
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+    .footer {
+        position: relative;
+        width: 100%;
+        padding: 1rem 1.5rem 1.5rem;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+    }
+
+    .footer a {
+        color: #fff;
+    }
+
+    .footer i {
+        margin: 0 10px;
+        font-size: 24px;
+    }
+
+    .footer a:hover {
+        color: #f1c40f;
+    }
+    </style>
+    
 </body>
 </html>

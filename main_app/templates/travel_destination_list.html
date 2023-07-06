@@ -1,31 +1,43 @@
 {% extends 'base.html' %}
 
-{% comment %} for head title tags and helping us with SEO {% endcomment %}
-{% block title %}travel_destination{% endblock  %}
+{% block title %}Travel Destinations{% endblock %}
 
 {% block content %}
+<style>
+    .destination-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-<h1 class="title pt-5">Trending Destinations</h1>
-<div class="gallery">
-  {% for travel_destination in travel_destinations %}
-  <a href="">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-square">
-          <img src="{{travel_destination.image}}" alt="{{travel_destination.name}}" />
-        </figure>
-      </div>
-      <div class="card-header">
-        <p class="card-header-title">{{travel_destination.name}}</p>
-      </div>
+    .destination-card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .destination-card h3 {
+        margin-bottom: 10px;
+    }
+
+    .destination-card p {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2>Travel Destinations</h2>
+    {% for destination in travel_destinations %}
+    <div class="destination-card">
+        <img src="{{ destination.image }}" alt="{{ destination.title }}">
+        <h3>{{ destination.title }}</h3>
+        <p>{{ destination.description }}</p>
+        <p>Best Time to Visit: {{ destination.best_time_to_visit }}</p>
+        <p>Budget Range: {{ destination.budget_range }}</p>
     </div>
-  </a>
-	{% empty %}
-  <article class="message">
-    <div class="message-header">
-      <p>No travel_destinations Available</p>
-    </div>
-  </article>
-  {% endfor %}
+    {% empty %}
+    <p>No destinations available.</p>
+    {% endfor %}
 </div>
 {% endblock %}
