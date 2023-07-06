@@ -4,4 +4,4 @@ python manage.py collectstatic --no-input
 # Run Migration
 python3 manage.py migrate
 # Start gunicorn
-gunicorn django_travel.wsgi:application --log-file -
+
