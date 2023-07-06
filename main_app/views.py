@@ -25,7 +25,7 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class CountryList(TemplateView):
     template_name = "country_list.html"
 
